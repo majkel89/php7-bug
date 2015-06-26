@@ -7,7 +7,7 @@ class Base {
 }
 class Mock extends Base { }
 
-$obj = new Base;
+$obj = new Mock;
 $excepted = 'REFLECTED';
 
 $property = new ReflectionProperty('Base', 'prop');
