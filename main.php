@@ -5,16 +5,14 @@ class Base {
         return static::$prop;
     }
 }
-class Mock extends Base {
-    protected static $prop = 'Mock';
-}
+class Mock extends Base { }
 
 $obj = new Mock;
-$excepted = 'Mock';
+$excepted = 'REFLECTED';
 
-//$property = new ReflectionProperty('Base', 'prop');
-//$property->setAccessible(true);
-//$property->setValue($excepted);
+$property = new ReflectionProperty('Base', 'prop');
+$property->setAccessible(true);
+$property->setValue($excepted);
 
 $actual = $obj->getProp();
 echo "Schould be `{$excepted}` and is `{$actual}`\n";
