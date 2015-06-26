@@ -15,6 +15,6 @@ $property->setAccessible(true);
 $property->setValue($excepted);
 
 $actual = $obj->getProp();
-echo "Schould be `{$actual}` but is `{$actual}`\n";
+echo "Schould be `{$excepted}` and is `{$actual}`\n";
 exit($actual !== $excepted ? 1 : 0);
 ?>
