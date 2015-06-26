@@ -3,4 +3,7 @@ php:
     - 5.6
     - nightly
 
+install:
+    - composer install -o
+
 script: php main.php
