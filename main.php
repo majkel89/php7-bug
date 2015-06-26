@@ -2,12 +2,13 @@
 
 namespace test\main;
 
-class Base {
+abstract class Base {
 
-    protected static $prop = 'Base Class';
+    protected static $prop = [
+    ];
 
     public function getProp() {
-        return static::$prop;
+        return array_merge(static::$prop, ['x' => 1]);
     }
 
 }
