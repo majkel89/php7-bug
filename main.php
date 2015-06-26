@@ -1,26 +1,20 @@
 <?php
-
 abstract class Base {
-
     protected static $prop = 'BASE';
-
     public function getProp() {
         return static::$prop;
     }
-
 }
-
-class Mock extends Base {
-
-}
+class Mock extends Base { }
 
 $obj = new Mock;
+$excepted = 'REFLECTED';
 
-$p1 = new ReflectionProperty('Base', 'prop');
-if (!$p1->isPublic()) {
-    $p1->setAccessible(true);
-}
-$p1->setValue('REFLECTED');
+$property = new ReflectionProperty('Base', 'prop');
+$property->setAccessible(true);
+$property->setValue($excepted);
 
-$actualArgs = $obj->getProp();
-echo "Schould be `REFLECTED` : `".var_export($actualArgs, true)."`\n";
+$actual = $obj->getProp();
+echo "Schould be `{$actual}` but is `{$actual}`\n";
+exit($actual !== $excepted ? 1 : 0);
+?>
