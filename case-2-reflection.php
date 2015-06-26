@@ -2,6 +2,8 @@
 
 namespace test\reflected;
 
+use ReflectionProperty;
+
 echo "Case #1 static\n\n";
 
 class TestClass extends \PHPUnit_Framework_TestCase {
@@ -12,9 +14,16 @@ class TestClass extends \PHPUnit_Framework_TestCase {
 
     public function test() {
         $obj = $this->mock(self::CLS)->new();
-        $this->reflect(self::CLS)->prop = 'REFLECTED';
-        $actualArgs = $this->reflect($obj)->getProp();
-        echo "Schould be [a => 1, b => 1, c => 2, d => 2] : ".var_export($actualArgs, true)."\n\n";
+        //$this->reflect(self::CLS)->prop = 'REFLECTED';
+
+        $p1 = new ReflectionProperty(self::CLS, 'prop');
+        if (!$p1->isPublic()) {
+            $p1->setAccessible(true);
+        }
+        $p1->setValue('REFLECTED');
+
+        $actualArgs = $obj->getProp();
+        echo "Schould be `REFLECTED` : `".var_export($actualArgs, true)."`\n\n";
     }
 
 }
