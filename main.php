@@ -1,5 +1,5 @@
 <?php
-abstract class Base {
+class Base {
     protected static $prop = 'BASE';
     public function getProp() {
         return static::$prop;
@@ -7,7 +7,7 @@ abstract class Base {
 }
 class Mock extends Base { }
 
-$obj = new Mock;
+$obj = new Base;
 $excepted = 'REFLECTED';
 
 $property = new ReflectionProperty('Base', 'prop');
