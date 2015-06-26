@@ -12,13 +12,7 @@ class TestClass extends \PHPUnit_Framework_TestCase {
 
     public function test() {
         $obj = $this->mock(self::CLS)->new();
-        $this->reflect(self::CLS)->prop = array(
-            'a' => 1,
-            'b' => 1,
-            'c' => 1,
-        );
-        $obj->d = 2;
-        $obj->c = 2;
+        $this->reflect(self::CLS)->prop = 'REFLECTED';
         $actualArgs = $this->reflect($obj)->getProp();
         echo "Schould be [a => 1, b => 1, c => 2, d => 2] : ".var_export($actualArgs, true)."\n\n";
     }
