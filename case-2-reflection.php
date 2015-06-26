@@ -6,6 +6,10 @@ use ReflectionProperty;
 
 echo "Case #1 static\n\n";
 
+class Mock extends \test\main\Base {
+
+}
+
 class TestClass extends \PHPUnit_Framework_TestCase {
 
     use \Xpmock\TestCaseTrait;
@@ -13,8 +17,7 @@ class TestClass extends \PHPUnit_Framework_TestCase {
     const CLS = '\test\main\Base';
 
     public function test() {
-        $obj = $this->mock(self::CLS)->new();
-        //$this->reflect(self::CLS)->prop = 'REFLECTED';
+        $obj = new Mock;
 
         $p1 = new ReflectionProperty(self::CLS, 'prop');
         if (!$p1->isPublic()) {
