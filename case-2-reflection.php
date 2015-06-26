@@ -20,7 +20,7 @@ class TestClass extends \PHPUnit_Framework_TestCase {
         $obj->d = 2;
         $obj->c = 2;
         $actualArgs = $this->reflect($obj)->getProp();
-        echo "Schould be [R => 1, x => 1] : ".var_export($actualArgs, true)."\n\n";
+        echo "Schould be [a => 1, b => 1, c => 2, d => 2] : ".var_export($actualArgs, true)."\n\n";
     }
 
 }

@@ -12,7 +12,7 @@ abstract class Base {
     ];
 
     public function getProp() {
-        return array_merge(static::$prop, $this->_arguments);
+        return static::$prop;
     }
 
     /**
@@ -25,5 +25,4 @@ abstract class Base {
 
 }
 
-include 'case-1-static.php';
 include 'case-2-reflection.php';
