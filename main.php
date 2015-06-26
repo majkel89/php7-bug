@@ -1,9 +1,5 @@
 <?php
 
-namespace test\main;
-
-require_once 'vendor/autoload.php';
-
 abstract class Base {
 
     protected static $prop = 'BASE';
@@ -14,4 +10,17 @@ abstract class Base {
 
 }
 
-include 'case-2-reflection.php';
+class Mock extends Base {
+
+}
+
+$obj = new Mock;
+
+$p1 = new ReflectionProperty('Base', 'prop');
+if (!$p1->isPublic()) {
+    $p1->setAccessible(true);
+}
+$p1->setValue('REFLECTED');
+
+$actualArgs = $obj->getProp();
+echo "Schould be `REFLECTED` : `".var_export($actualArgs, true)."`\n";
