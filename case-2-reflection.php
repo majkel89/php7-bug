@@ -10,9 +10,7 @@ class Mock extends \test\main\Base {
 
 }
 
-class TestClass extends \PHPUnit_Framework_TestCase {
-
-    use \Xpmock\TestCaseTrait;
+class TestClass {
 
     const CLS = '\test\main\Base';
 
