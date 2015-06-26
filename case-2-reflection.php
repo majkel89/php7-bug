@@ -4,21 +4,26 @@ namespace test\reflected;
 
 echo "Case #1 static\n\n";
 
-use test\main\Base;
-use ReflectionProperty;
+class TestClass extends \PHPUnit_Framework_TestCase {
 
-class Mock extends Base {
+    use \Xpmock\TestCaseTrait;
+
+    const CLS = '\test\main\Base';
+
+    public function test() {
+        $obj = $this->mock(self::CLS)->new();
+        $this->reflect(self::CLS)->prop = array(
+            'a' => 1,
+            'b' => 1,
+            'c' => 1,
+        );
+        $obj->d = 2;
+        $obj->c = 2;
+        $actualArgs = $this->reflect($obj)->getProp();
+        echo "Schould be [R => 1, x => 1] : ".var_export($actualArgs, true)."\n\n";
+    }
 
 }
 
-$obj = new Mock;
-
-$p1 = new ReflectionProperty('\test\reflected\Mock', 'prop');
-$p1->setAccessible(true);
-$p1->setValue(['R' => 1]);
-
-$p2 = new ReflectionProperty('\test\reflected\Mock', 'prop');
-$p2->setAccessible(true);
-
-
-echo "Schould be [R => 1, x => 1] : ".var_export($obj->getProp(), true)."\n\n";
+$test = new TestClass();
+$test->test();
